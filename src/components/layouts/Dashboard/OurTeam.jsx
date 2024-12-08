@@ -10,7 +10,6 @@ export function OurTeam() {
 
             <div className="flex flex-col justify-between">
                 <CardTeam />
-                <CardTeam />
             </div>
         </div>
     )

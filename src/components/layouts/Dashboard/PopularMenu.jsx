@@ -6,8 +6,6 @@ export function PopularMenu() {
             <h1 className="text-lg font-medium">Tranding Menu</h1>
             <div className="flex flex-col gap-1">
                 <TrandingMenuCard/>
-                <TrandingMenuCard/>
-                <TrandingMenuCard/>
             </div>
         </div>
     )
