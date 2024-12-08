@@ -1,3 +1,5 @@
+import tailwindScrollbar from 'tailwind-scrollbar';
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
@@ -6,19 +8,23 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        "poppins": '"Poppins", sans-serif'
+      },
       colors: {
-        'seagull': {
-          '50': '#f0faff',
-          '100': '#dff4ff',
-          '200': '#b8ebff',
-          '300': '#5cd6ff',
-          '400': '#33cdfd',
-          '500': '#09b7ee',
-          '600': '#0094cc',
-          '700': '#0076a5',
-          '800': '#046388',
-          '900': '#0a5270',
-          '950': '#06344b',
+        'bloods': {
+        '50': '#fff1f0',
+        '100': '#ffe0dd',
+        '200': '#ffc6c1',
+        '300': '#ff9e95',
+        '400': '#ff6759',
+        '500': '#ff3826',
+        '600': '#fc1a06',
+        '700': '#cc1100',
+        '800': '#af1305',
+        '900': '#90170c',
+        '950': '#500700',
+    
         },
       },
       boxShadow: {
@@ -27,6 +33,12 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    tailwindScrollbar,
+  ],
+  variants: {
+    scrollbar: ['rounded'],
+  }
+  ,
 }
 

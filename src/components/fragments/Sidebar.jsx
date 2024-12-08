@@ -8,7 +8,7 @@ export function Sidebar(){
     const currentPath = location.pathname.split('/')[1];
 
     return(
-        <div className="fixed left-0 top-0 z-[1000] bg-seagull-500 h-dvh flex flex-col justify-between py-6 w-60">
+        <div className="fixed left-0 top-0 z-[1000] bg-gradient-to-br from-bloods-900 via-bloods-900 to-bloods-700 h-dvh flex flex-col justify-between py-6 w-60">
             <div className="pl-2">
                 <div className="rounded-full bg-white w-10 h-10 ml-4"></div>
                 <div className="mt-8 py-4 text-white flex flex-col gap-1 overflow-hidden">
