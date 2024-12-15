@@ -1,4 +1,4 @@
-import { BiLogOutCircle, BiSolidDashboard, BiSolidReceipt } from "react-icons/bi";
+import { BiLogOutCircle, BiSolidDashboard } from "react-icons/bi";
 import { MdRestaurantMenu, MdTableBar } from "react-icons/md";
 import { IconLink } from "../elements/IconLink";
 import { useLocation } from "react-router-dom";
@@ -25,13 +25,6 @@ export function Sidebar(){
                         isActive={currentPath === "order"} 
                     >
                         <MdTableBar />
-                    </IconLink>
-                    <IconLink 
-                        linkTo="/order-history" 
-                        name="Order History"
-                        isActive={currentPath === "order-history"} 
-                    >
-                        <BiSolidReceipt />
                     </IconLink>
                     <IconLink 
                         linkTo="/menu" 

@@ -8,16 +8,16 @@ const CategoryBtn = ({children, name}) => {
     
     useEffect(() => {
         if(categoryId == name.toLowerCase()){
-            setColor('bg-seagull-500 text-white')
+            setColor('bg-bloods-700 text-white')
         } else {
-            setColor('bg-white text-seagull-600')
+            setColor('bg-white text-bloods-700')
         }
     }, [categoryId]) 
 
     return(
         <Link 
         to={`/order/${tableId}/${name.toLowerCase()}`} 
-        className={`px-4 py-2 ${color} shadow-soft cursor-pointer rounded-md flex items-center gap-2 hover:bg-seagull-400 active:bg-seagull-500 font-semibold hover:text-white hover:scale-[.98] active:scale-95 transition-all duration-100`}>
+        className={`px-4 py-2 ${color} shadow-soft cursor-pointer rounded-md flex items-center gap-2 hover:bg-bloods-700 active:bg-bloods-800 font-semibold hover:text-white hover:scale-[.98] active:scale-95 transition-all duration-100`}>
             {children}
             <h1>{name}</h1>
         </Link>

@@ -1,7 +1,7 @@
-export function CardTeam() {
+export function  CardTeam() {
     const team = [
-        { name: "Sakha Naufal Huda", desc: "FrontEnd Developer" },
-        { name: "Bryan Berlandro", desc: "Full-Stack Developer" }
+        { name: "Sakha Naufal Huda", desc: "202143501152" },
+        { name: "Bryan Berlandro", desc: "202143501152" }
     ];
 
     return (

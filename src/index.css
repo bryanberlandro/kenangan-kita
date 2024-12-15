@@ -23,3 +23,11 @@
 .custom-scrollbar::-webkit-scrollbar-track {
   background: #f3f4f6;
 }
+
+.btn-hover{
+  @apply hover:scale-[.98] hover:shadow-soft active:scale-95 hover:brightness-95 active:brightness-90
+}
+
+.plus-min-btn{
+  @apply w-[15%] h-8 flex justify-center items-center rounded-md bg-bloods-700 text-white cursor-pointer btn-hover select-none
+}

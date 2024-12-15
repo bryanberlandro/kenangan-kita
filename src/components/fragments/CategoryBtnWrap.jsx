@@ -8,10 +8,10 @@ import CategoryBtn from "../elements/CategoryBtn";
 const CategoryBtnWrap = () => {
     return(
         <div className="flex items-center gap-4">
-            <CategoryBtn name="Semua">
+            <CategoryBtn name="All">
                 <IoFastFood/>
             </CategoryBtn>
-            <CategoryBtn name="Makanan">
+            <CategoryBtn name="Food">
                 <FaBowlFood/>
             </CategoryBtn>
             <CategoryBtn name="Snack">
