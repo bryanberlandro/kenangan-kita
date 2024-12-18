@@ -4,7 +4,7 @@ import Blob from '../../elements/Blob.svg';
 
 export function Insight() {
     return (
-        <div className="relative overflow-hidden rounded-2xl justify-between p-5 flex-col flex h-80 bg-white shadow-multiple">
+        <div className="w-full xl:w-[66%] relative overflow-hidden rounded-2xl justify-between p-5 flex-col flex h-80 bg-white shadow-multiple">
             <div className="flex flex-col gap-1">
                 <div className="flex items-center gap-2">
                     <PiHandHeartFill className="text-bloods-700  text-4xl" />

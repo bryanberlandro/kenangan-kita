@@ -1,19 +1,16 @@
-import { useState } from "react";
+/* eslint-disable react/prop-types */
+
 import { CardTeam } from "../../elements/CardTeam";
-import { OurTeamModal } from "./OurTeamModal";
 
-export function OurTeam() {
-    const [isOpen, setIsOpen] = useState(false);
+export function OurTeam({ setIsOpen, isOpen }) {
 
-    const openModal = () => setIsOpen(true);
-    const closeModal = () => setIsOpen(false);
     return (
-        <div className="w-[49%] h-full overflow-hidden rounded-2xl justify-between p-5 flex-col flex bg-white shadow-multiple">
+        <div className="w-full xl:w-1/3 h-full overflow-hidden rounded-2xl justify-between p-5 flex-col flex bg-white shadow-multiple">
             <div className="flex justify-between items-center">
                 <h1 className="font-medium text-lg">{`Our Team's`}</h1>
                 <p
                     className="opacity-45 underline text-sm hover:opacity-100"
-                    onClick={openModal}
+                    onClick={() => setIsOpen(!isOpen)}
                 >
                     See all
                 </p>
@@ -23,7 +20,6 @@ export function OurTeam() {
                 <CardTeam />
             </div>
 
-            <OurTeamModal isOpen={isOpen} closeModal={closeModal} />
         </div>
     )
 }

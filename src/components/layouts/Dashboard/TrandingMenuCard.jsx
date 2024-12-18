@@ -10,7 +10,7 @@ export function TrandingMenuCard() {
             {popular.map((menu, index) => (
                 <div
                     key={index}
-                    className="border-b border-opacity-5 p-2 flex items-center justify-between"
+                    className="border-b border-opacity-5 p-3 flex items-center justify-between"
                 >
                     <div className="flex items-center gap-2">
                         <div className="w-16">

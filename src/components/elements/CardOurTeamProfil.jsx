@@ -11,8 +11,8 @@ export function CardOurTeamProfil({ name, npm, img }) {
             </div>
 
             <div className="absolute bg-white bg-opacity-95 px-5 py-2 w-56 transform -translate-x-1/2 bottom-2 left-1/2 rounded-lg">
-                <p>{name}</p>
-                <p>{npm}</p>
+                <p className="font-medium">{name}</p>
+                <p className="opacity-80">{npm}</p>
             </div>
         </div>
     );

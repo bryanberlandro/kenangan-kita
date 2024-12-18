@@ -73,7 +73,7 @@ const ProdModal = ({showModal, setShowModal, data}) => {
 
     return(
         <>
-        <div className={`fixed w-full h-dvh inset-0 backdrop-blur-sm bg-seagull-50 bg-opacity-20 justify-center items-center ${showModal ? "flex" : "hidden"}`}>
+        <div className={`fixed w-full h-dvh inset-0 backdrop-blur-sm bg-bloods-50 bg-opacity-20 justify-center items-center ${showModal ? "flex" : "hidden"}`}>
             <div className={`rounded-lg px-4 h-max bg-white shadow-soft p-6 transition-all ease-in-out ${transition}`}>
                 <div className="w-full text-lg cursor-pointer flex justify-end text-bloods-600">
                     <FaXmark onClick={closeModal}/>

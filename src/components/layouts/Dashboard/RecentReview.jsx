@@ -25,7 +25,7 @@ export function RecentReview() {
     }, []);
 
     return (
-        <div className="h-[49%] overflow-hidden gap-2 rounded-2xl justify-between p-5 flex-col flex bg-white shadow-multiple">
+        <div className="xl:w-1/3 w-full overflow-hidden gap-2 rounded-2xl justify-between p-5 flex-col flex bg-white shadow-multiple">
             <h1 className="text-lg font-medium">Recent Review</h1>
 
             <div
