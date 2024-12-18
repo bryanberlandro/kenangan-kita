@@ -25,7 +25,7 @@ const CustModal = ({table}) => {
     }
     
     return(
-        <div className={`fixed w-full h-dvh inset-0 backdrop-blur-sm bg-seagull-50 bg-opacity-20 justify-center items-center ${table ? 'flex':'hidden'}`}>
+        <div className={`absolute w-full h-dvh inset-0 backdrop-blur-sm bg-opacity-20 justify-center items-center ${table ? 'flex':'hidden'}`}>
             <div className="rounded-lg w-[450px] h-max bg-white shadow-soft p-6">
                 <div className="w-full flex justify-end">
                     <FaXmark/>
