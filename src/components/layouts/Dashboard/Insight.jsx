@@ -56,7 +56,7 @@ export function Insight() {
 
     return (
         <div className="w-full xl:w-[66%] relative overflow-hidden rounded-2xl justify-between p-5 flex-col flex h-80 bg-white shadow-multiple">
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col gap-1 ">
                 <div className="flex items-center gap-2">
                     <PiHandHeartFill className="text-bloods-700 text-4xl" />
                     <h1 className="text-2xl font-medium">Favorite Menu</h1>
@@ -65,6 +65,9 @@ export function Insight() {
                     <p className="text-sm text-black opacity-35 hover:opacity-100">
                         Displays the most ordered products to track sales trends and support business decisions.
                     </p>
+                    {favMenu.map((menu) => (
+                        <p className="translate-y-5 text-xl font-medium translate-x-10">{menu.name}</p>
+                    ))}
                 </div>
             </div>
 
@@ -76,7 +79,7 @@ export function Insight() {
                             This menu has significantly increased in popularity!
                         </p>
                     </div>
-                    <div className="w-[60%] justify-center flex z-20">
+                    <div className="w-[50%] justify-center flex z-20">
                         <img src={menu.image} alt={menu.name} className="w-[80%]" />
                     </div>
                 </div>

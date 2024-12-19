@@ -2,13 +2,17 @@ import React, { useState } from "react";
 
 const ReviewModal = ({ isOpen, onClose }) => {
     const [formData, setFormData] = useState({
-        taste: "",
-        price: "",
-        presentation: "",
+        taste: 0,
+        price: 0,
+        presentation: 0,
         comment: "",
     });
 
     const [isSubmitting, setIsSubmitting] = useState(false); // Untuk status loading
+
+    const handleRatingChange = (field, value) => {
+        setFormData({ ...formData, [field]: value });
+    };
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -37,9 +41,9 @@ const ReviewModal = ({ isOpen, onClose }) => {
 
             // Reset form and close modal
             setFormData({
-                taste: "",
-                price: "",
-                presentation: "",
+                taste: 0,
+                price: 0,
+                presentation: 0,
                 comment: "",
             });
             onClose();
@@ -52,10 +56,28 @@ const ReviewModal = ({ isOpen, onClose }) => {
 
     if (!isOpen) return null;
 
+    const renderStars = (field, value) => {
+        return (
+            <div className="flex space-x-1">
+                {[1, 2, 3, 4, 5].map((star) => (
+                    <button
+                        key={star}
+                        type="button"
+                        onClick={() => handleRatingChange(field, star)}
+                        className={`text-2xl ${
+                            star <= value ? "text-yellow-500" : "text-gray-400"
+                        }`}
+                    >
+                        ★
+                    </button>
+                ))}
+            </div>
+        );
+    };
+
     return (
         <div className="sticky w-full h-dvh inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
             <div className="bg-white rounded-lg w-11/12 max-w-lg shadow-lg">
-                {/* Header Modal */}
                 <div className="sticky top-0 bg-white p-4 border-b border-gray-300 z-10">
                     <h2 className="text-xl font-semibold">Review</h2>
                     <p className="opacity-70 font-medium">Meja T-204</p>
@@ -76,47 +98,17 @@ const ReviewModal = ({ isOpen, onClose }) => {
                     <form onSubmit={handleSubmit} className="space-y-4">
                         <div>
                             <label className="block font-medium text-gray-700">Taste</label>
-                            <input
-                                type="number"
-                                name="taste"
-                                min="1"
-                                max="5"
-                                value={formData.taste}
-                                onChange={handleChange}
-                                className="w-full mt-1 p-2 border rounded-lg"
-                                placeholder="Nilai antara 1-5"
-                                required
-                            />
+                            {renderStars("taste", formData.taste)}
                         </div>
 
                         <div>
                             <label className="block font-medium text-gray-700">Price</label>
-                            <input
-                                type="number"
-                                name="price"
-                                min="1"
-                                max="5"
-                                value={formData.price}
-                                onChange={handleChange}
-                                className="w-full mt-1 p-2 border rounded-lg"
-                                placeholder="Nilai antara 1-5"
-                                required
-                            />
+                            {renderStars("price", formData.price)}
                         </div>
 
                         <div>
                             <label className="block font-medium text-gray-700">Presentation</label>
-                            <input
-                                type="number"
-                                name="presentation"
-                                min="1"
-                                max="5"
-                                value={formData.presentation}
-                                onChange={handleChange}
-                                className="w-full mt-1 p-2 border rounded-lg"
-                                placeholder="Nilai antara 1-5"
-                                required
-                            />
+                            {renderStars("presentation", formData.presentation)}
                         </div>
 
                         <div>
