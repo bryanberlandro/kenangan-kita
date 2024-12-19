@@ -8,10 +8,16 @@ import { useState } from "react";
 import CustModal from "../components/fragments/CustModal";
 import PinAdmin from "../components/fragments/PinAdmin";
 import ReviewModal from "../components/fragments/ReviewModal";
+import PinModal from "../components/fragments/PinModal";
 
 export default function TablePage() {
     const [table, setTable] = useState(null)
     const [isReviewModalOpen, setIsReviewModalOpen] = useState(true);
+    const [isModalPinOpen, setIsModalPinOpen] = useState(false)
+
+    const handlePinSubmit = (pin) => {
+        console.log("PIN yang dimasukkan:", pin);
+    };
 
     const handleOpenReviewModal = () => {
         setIsReviewModalOpen(true);
@@ -40,13 +46,20 @@ export default function TablePage() {
                 </div>
                 <div className="bg-neutral-100 pb-6 px-6 mt-4">
                     <div className="mx-auto cursor-pointer bg-white px-10 py-4 w-max rounded-b-full text-bloods-700 font-medium shadow-soft">
-                        <h1>CASHIER</h1>
+                        <button
+                            onClick={() => setIsModalPinOpen(true)}
+                        >CASHIER</button>
                     </div>
                     <TableLayout setTable={setTable} />
                 </div>
                 <PinAdmin />
                 <CustModal table={table} />
-                <ReviewModal isOpen={isReviewModalOpen} onClose={handleCloseReviewModal}/>
+                <ReviewModal isOpen={isReviewModalOpen} onClose={handleCloseReviewModal} />
+                <PinModal
+                    isOpen={isModalPinOpen}
+                    onClose={() => setIsModalPinOpen(false)}
+                    onSubmit={handlePinSubmit}
+                />
             </MaxLayout>
         </>
     )
