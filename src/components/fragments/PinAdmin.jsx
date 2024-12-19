@@ -15,7 +15,7 @@ const PinAdmin = () => {
     
 
     return(
-        <div className={`sticky w-full h-dvh inset-0 backdrop-blur-sm bg-opacity-20 justify-center items-center ${showModal ? 'flex':'flex'}`}>
+        <div className={`hidden sticky w-full h-dvh inset-0 backdrop-blur-sm bg-opacity-20 justify-center items-center ${showModal ? 'flex':'flex'}`}>
             <div className={`rounded-lg w-[450px] h-max bg-white shadow-soft p-6 transition-all ease-in-out ${transition}`}>
                 <div className="w-full flex justify-end">
                     <FaXmark onClick={closeModal}/>
