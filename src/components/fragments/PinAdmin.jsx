@@ -21,7 +21,7 @@ const PinAdmin = () => {
                     <FaXmark onClick={closeModal}/>
                 </div>
                 <div className="bg-bloods-700 p-1">
-                    <input type="text"className="bg-bloods-100 outline-non"/>
+                    <input type="text"className="bg-bloods-100 outline-none"/>
                 </div>
             </div>
         </div>
