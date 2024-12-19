@@ -53,7 +53,7 @@ const ReviewModal = ({ isOpen, onClose }) => {
     if (!isOpen) return null;
 
     return (
-        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+        <div className="sticky w-full h-dvh inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
             <div className="bg-white rounded-lg w-11/12 max-w-lg shadow-lg">
                 {/* Header Modal */}
                 <div className="sticky top-0 bg-white p-4 border-b border-gray-300 z-10">
