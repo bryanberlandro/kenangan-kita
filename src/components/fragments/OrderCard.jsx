@@ -1,8 +1,9 @@
 import { FaTrash } from "react-icons/fa6";
 import { useParams } from "react-router-dom";
+import { convertRupiah } from "../../utils/convertRupiah";
 
 /* eslint-disable react/prop-types */
-const OrderCard = ({name, quantity, total, id}) => {
+const OrderCard = ({name, quantity, total, id, onRemove}) => {
     const existingOrder = JSON.parse(localStorage.getItem('customers'));
     const { tableId } = useParams()
     
@@ -17,9 +18,9 @@ const OrderCard = ({name, quantity, total, id}) => {
             );
 
             localStorage.setItem('customers', JSON.stringify(updatedCustomer));
+            onRemove(updatedOrders);
             return
         }
-        console.log(existingOrder)
     }
 
     return(
@@ -33,7 +34,7 @@ const OrderCard = ({name, quantity, total, id}) => {
                 <p className="text-neutral-400 font-medium text-xs select-none">Spicy</p>
                 <div className="flex justify-between mt-2">
                     <p className="text-bloods-400 select-none">{quantity}x</p>
-                    <p className="text-seagull-500 font-medium select-none">Rp {total}</p>
+                    <p className="text-seagull-500 font-medium select-none">{convertRupiah(total)}</p>
                 </div>
             </div>
         </div>

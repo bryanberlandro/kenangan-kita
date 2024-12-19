@@ -45,7 +45,7 @@ const ProdModal = ({showModal, setShowModal, data}) => {
     function handleAddToCart(){
         const currOrder = customersData.find(dt => dt.table == tableId)
         if(currOrder){
-            const existingOrder = currOrder.orders.find(curr => curr.id === data.id);
+            const existingOrder = currOrder.orders.find(curr => curr.id === data._id);
             if (existingOrder) {
                 existingOrder.quantity += quantity; 
                 existingOrder.total = existingOrder.quantity * data.price;
@@ -82,7 +82,7 @@ const ProdModal = ({showModal, setShowModal, data}) => {
                     <div className="rounded-lg shadow-soft w-72 h-72"></div>
                     <div className="w-80">
                         <h1 className="font-semibold text-lg">{data?.name}</h1>
-                        <p className="text-sm text-neutral-400">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Expedita numquam mollitia vel ab laboriosam vero recusandae, incidunt reprehenderit alias dicta natus pariatur impedit ullam sed.</p>
+                        <p className="text-sm text-neutral-400">{data?.description}</p>
                         <div className="mt-4">
                             <h1 className="text-sm font-semibold">Quantity</h1>
                             <div className="flex w-full text-sm justify-between mt-1">

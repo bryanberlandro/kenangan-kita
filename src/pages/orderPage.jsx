@@ -6,14 +6,45 @@ import OrderSidebar from "../components/fragments/OrderSidebar";
 import CategoryBtnWrap from "../components/fragments/CategoryBtnWrap";
 import ProdModal from "../components/fragments/ProdModal";
 import ProductLayout from "../components/layouts/Order/ProductLayout";
+import axios from "axios";
 
 export default function OrderPage(){
-    const {tableId} = useParams();
+    const {tableId, categoryId} = useParams();
     const [showModal, setShowModal] = useState(false)
     const [chosenProd, setChosenProd] = useState(null)
     const [showSidebar, setShowSidebar] = useState(false)
     const existingOrder = JSON.parse(localStorage.getItem('customers'));
     const currOrder = existingOrder?.find(order => order.table === tableId);
+    const [data, setData] = useState([]);
+    const [searchTerm, setSearchTerm] = useState("");
+    const [loading, setLoading] = useState(true)
+    const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+
+
+    useEffect(() => {
+        const fetchData = async() => {
+            setLoading(true); 
+            let url = 'https://kenangan-kita-api.vercel.app/menus';
+            
+            if (capitalize(categoryId) && categoryId !== "All") {
+                url = `https://kenangan-kita-api.vercel.app/menus/category/${categoryId}`;
+            }
+            if (searchTerm) {
+                url = `https://kenangan-kita-api.vercel.app/menus/search?name=${searchTerm}`;
+            }
+            try {
+                const response = await axios.get(url);
+                console.log(response.data.data);
+                setData(response.data);
+            } catch (error) {
+                console.error(error);
+            } finally {
+                setLoading(false);
+            }
+        }
+
+        fetchData()
+    }, [categoryId, searchTerm])
 
     useEffect(() => {
         if(currOrder){
@@ -48,6 +79,7 @@ export default function OrderPage(){
                         type="text" 
                         placeholder="French fries, Matcha, Hazelnut Latte..." 
                         className="w-[85%] outline-none"
+                        onChange={(e) => setSearchTerm(e.target.value)}
                         />
                         <div className="bg-seagull-500 rounded-md h-full w-[15%] text-white flex justify-center items-center">
                             <FaMagnifyingGlass/>
@@ -61,11 +93,14 @@ export default function OrderPage(){
                     <ProductLayout
                     showSidebar={showSidebar}
                     handleShowModal={handleShowModal}
+                    data={data}
+                    loading={loading}
                     />
                 </div>
                 <OrderSidebar
                 showSidebar={showSidebar}
                 currOrder={currOrder}
+                setShowSidebar={setShowSidebar}
                 />
             </div>
             <ProdModal

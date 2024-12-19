@@ -4,15 +4,12 @@ import { BiCalendar } from "react-icons/bi";
 import StatusBadge from "../components/elements/StatusBadge";
 import { getDate } from "../utils/getDate";
 import TableLayout from "../components/layouts/Order/TableLayout";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import CustModal from "../components/fragments/CustModal";
+import PinAdmin from "../components/fragments/PinAdmin";
 
 export default function TablePage(){
     const [ table, setTable ] = useState(null)
-
-    useEffect(() => {
-        console.log(table)
-    }, [table]) 
 
     return(
         <>
@@ -33,11 +30,12 @@ export default function TablePage(){
                 <StatusBadge status="Occupied"/>
             </div>
             <div className="bg-neutral-100 pb-6 px-6 mt-4">
-                <div className="mx-auto bg-white px-10 py-4 w-max rounded-b-full text-bloods-700 font-medium shadow-soft">
+                <div className="mx-auto cursor-pointer bg-white px-10 py-4 w-max rounded-b-full text-bloods-700 font-medium shadow-soft">
                     <h1>CASHIER</h1>
                 </div>
                 <TableLayout setTable={setTable}/>
             </div>
+            <PinAdmin/>
             <CustModal table={table}/>
         </MaxLayout>
         </>

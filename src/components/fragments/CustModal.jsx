@@ -1,34 +1,62 @@
 /* eslint-disable react/prop-types */
+import { useEffect, useState } from "react";
 import { FaXmark } from "react-icons/fa6"
 
 const CustModal = ({table}) => {
-    const existingCustomer = JSON.parse(localStorage.getItem('customers'));
+    const [errMsg, setErrMsg] = useState("")
+    const [transition, setTransition] = useState('')
+    const [showModal, setShowModal] = useState(false)
+
     function handleSetCus(e){
         e.preventDefault()
         const currentDate = new Date().toISOString();
         const formData = new FormData(e.currentTarget);
+        const username = formData.get('customer');
+        if(!username){
+            return setErrMsg("Please enter your name!")
+        }
         const storeData = [];
         const formValue = {
-            table: table,
+            id: table._id,
+            table: table.tableId,
             customer: formData.get('customer'),
             orders: [],
             date: currentDate
         }
-        if(existingCustomer?.length > 0){
-            localStorage.setItem('customers', JSON.stringify([...existingCustomer, formValue]));
-            window.location.href = `/order/${table}/all`
-            return
-        }
         storeData.push(formValue);
         localStorage.setItem('customers', JSON.stringify(storeData));
-        window.location.href = `/order/${table}/all`
+        window.location.href = `/order/${table.tableId}/All`
+    }
+
+    useEffect(() => {
+        if(!table?.tableId){
+            return setShowModal(false);
+        }
+
+        setShowModal(true)
+    }, [table?.tableId])
+
+    useEffect(() => {
+        if(showModal){
+            setTransition('opacity-100 scale-100')
+        } else {
+            setTransition('opacity-0 scale-0')
+        }
+    }, [showModal])
+
+    function closeModal(){
+        setTransition('opacity-0 scale-0')
+        const timeout = setTimeout(() => {
+            setShowModal(false);
+        }, 100); 
+        return () => clearTimeout(timeout);
     }
     
     return(
-        <div className={`absolute w-full h-dvh inset-0 backdrop-blur-sm bg-opacity-20 justify-center items-center ${table ? 'flex':'hidden'}`}>
-            <div className="rounded-lg w-[450px] h-max bg-white shadow-soft p-6">
+        <div className={`sticky w-full h-dvh inset-0 backdrop-blur-sm bg-opacity-20 justify-center items-center ${showModal ? 'flex':'hidden'}`}>
+            <div className={`rounded-lg w-[450px] h-max bg-white shadow-soft p-6 transition-all ease-in-out ${transition}`}>
                 <div className="w-full flex justify-end">
-                    <FaXmark/>
+                    <FaXmark onClick={closeModal}/>
                 </div>
                 <div className="text-center">
                     <h1 className="font-semibold text-lg">Pesanan Baru</h1>
@@ -38,11 +66,12 @@ const CustModal = ({table}) => {
                 <form action="" className="mt-6" onSubmit={handleSetCus}>
                     <div className="flex flex-col gap-1">
                         <label htmlFor="table" className="font-medium text-sm">Meja</label>
-                        <input type="text" name="table" id="table" disabled className="bg-neutral-100 border-2 border-neutral-200 rounded-md py-2 px-4 text-neutral-400 font-medium" defaultValue={table?.toUpperCase()}/>
+                        <input type="text" name="table" id="table" disabled className="bg-neutral-100 border-2 border-neutral-200 rounded-md py-2 px-4 text-neutral-400 font-medium" defaultValue={table?.tableId?.toUpperCase()}/>
                     </div>
                     <div className="flex flex-col gap-1 mt-4">
                         <label htmlFor="customer" className="font-medium text-sm">Nama Kustomer</label>
                         <input type="text" name="customer" id="customer" className="py-2 px-4 rounded-md border-2" placeholder="john doe..."/>
+                        <p className="text-xs text-bloods-600 font-semibold">{errMsg}</p>
                     </div>
 
                     <div className="flex gap-2">
