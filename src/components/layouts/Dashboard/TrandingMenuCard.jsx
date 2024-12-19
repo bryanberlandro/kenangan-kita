@@ -1,20 +1,13 @@
-export function TrandingMenuCard() {
-    const popular = [
-        { name: "Kenangan Kena Gigimu", price: "Rp. 35.000", total: 250, img: "https://static.vecteezy.com/system/resources/previews/011/048/029/original/iced-coffee-watercolor-set-free-png.png" },
-        { name: "Kenangan DiKamarKu", price: "Rp. 20.000", total: 200, img: "https://www.pngmart.com/files/21/Coffee-PNG.png" },
-        { name: "Kenangan DirumahKu", price: "Rp. 69.000", total: 100, img: "https://www.pngarts.com/files/1/Coffee-PNG-Image-with-Transparent-Background.png" }
-    ];
-
-    return (
-        <div>
-            {popular.map((menu, index) => (
+    export function TrandingMenuCard({ menu }) {
+        return (
+            <div>
                 <div
-                    key={index}
+                    key={menu._id}
                     className="border-b border-opacity-5 p-3 flex items-center justify-between"
                 >
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-5">
                         <div className="w-16">
-                            <img src={menu.img} alt={menu.name} />
+                            <img src={menu.image} alt={menu.name} />
                         </div>
                         <div className="text-sm">
                             <h1 className="font-medium">{menu.name}</h1>
@@ -22,10 +15,9 @@ export function TrandingMenuCard() {
                         </div>
                     </div>
                     <div>
-                        <p className="font-medium">{menu.total}</p>
+                        <p className="font-medium">{menu.totalRating}</p>
                     </div>
                 </div>
-            ))}
-        </div>
-    );
-}
+            </div>
+        );
+    }

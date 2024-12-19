@@ -1,8 +1,28 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { RecentReviewCard } from "../../elements/RecentReviewCard";
 
 export function RecentReview() {
     const scrollRef = useRef(null);
+    const [reviews, setReviews] = useState([]);
+
+    useEffect(() => {
+        async function fetchReviews() {
+            try {
+                const response = await fetch("https://kenangan-kita-api.vercel.app/reviews");
+                const result = await response.json();
+
+                if (response.ok && result.status === 200) {
+                    setReviews(result.data);
+                } else {
+                    console.error("Failed to fetch reviews:", result.message);
+                }
+            } catch (error) {
+                console.error("Error fetching reviews:", error);
+            }
+        }
+
+        fetchReviews();
+    }, []);
 
     useEffect(() => {
         const scrollContainer = scrollRef.current;
@@ -33,8 +53,14 @@ export function RecentReview() {
                 ref={scrollRef}
                 style={{ maxHeight: "calc(100% - 2rem)" }}
             >
-                {Array.from({ length: 10 }).map((_, index) => (
-                    <RecentReviewCard key={index} />
+                {reviews.map((review) => (
+                    <RecentReviewCard
+                        key={review._id}
+                        userName={review.userName}
+                        comment={review.comment}
+                        rating={review.rating}
+                        reviewDate={new Date(review.reviewDate).toLocaleDateString()}
+                    />
                 ))}
             </div>
         </div>
