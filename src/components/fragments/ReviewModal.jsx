@@ -72,7 +72,6 @@ const ReviewModal = ({ isOpen, setIsOpen, onClose }) => {
         } finally {
             setIsSubmitting(false);
             setIsOpen(false)
-
         }
     };
     

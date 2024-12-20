@@ -1,4 +1,4 @@
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom"
+import { BrowserRouter, HashRouter, Navigate, Route, Routes } from "react-router-dom"
 import DashboardPage from "./pages/dashboardPage"
 import { Sidebar } from "./components/fragments/Sidebar"
 import TablePage from "./pages/tablePage"
@@ -10,7 +10,7 @@ function App() {
   const [isSidebarActive, setIsSidebarActive] = useState(false);
   
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Header onClick={()=>setIsSidebarActive(!isSidebarActive)}/>
       <Sidebar isSidebarActive={isSidebarActive}/>
       <Routes>
@@ -19,7 +19,7 @@ function App() {
         <Route path="/order" element={<TablePage/>}/>
         <Route path="/order/:tableId/:categoryId" element={<OrderPage/>}/>
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   )
 }
 

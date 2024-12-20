@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import OrderCard from "./OrderCard";
 import { useEffect, useState } from "react";
 import { convertRupiah } from "../../utils/convertRupiah";
@@ -14,6 +14,8 @@ const OrderSidebar = ({showSidebar, currOrder, setShowSidebar}) => {
     const [newOrder, setNewOrder] = useState([]) 
     const [loading, setLoading] = useState(false)
     const [status, setStatus] = useState(null)
+    const navigate = useNavigate();
+
 
     useEffect(() => {
         setNewOrder(currOrder.orders || [])
@@ -61,7 +63,7 @@ const OrderSidebar = ({showSidebar, currOrder, setShowSidebar}) => {
             setShowSidebar(false);
             setLoading(false);
             setStatus(200)
-            const timeout = setTimeout(() => window.location.href = "/order", 3000);
+            const timeout = setTimeout(() => navigate("/order"), 3000);
             return () => clearTimeout(timeout);
         } catch (error) {
             console.error("Gagal menyimpan order:", error);

@@ -1,11 +1,13 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import { FaXmark } from "react-icons/fa6"
+import { useNavigate } from "react-router-dom";
 
 const CustModal = ({table}) => {
     const [errMsg, setErrMsg] = useState("")
     const [transition, setTransition] = useState('')
     const [showModal, setShowModal] = useState(false)
+    const navigate = useNavigate();
 
     function handleSetCus(e){
         e.preventDefault()
@@ -25,7 +27,7 @@ const CustModal = ({table}) => {
         }
         storeData.push(formValue);
         localStorage.setItem('customers', JSON.stringify(storeData));
-        window.location.href = `/order/${table.tableId}/All`
+        navigate(`/order/${table.tableId}/All`);
     }
 
     useEffect(() => {

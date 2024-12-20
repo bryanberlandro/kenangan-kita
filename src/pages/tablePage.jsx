@@ -8,13 +8,12 @@ import { useEffect, useState } from "react";
 import CustModal from "../components/fragments/CustModal";
 import PinAdmin from "../components/fragments/PinAdmin";
 import ReviewModal from "../components/fragments/ReviewModal";
-import PinModal from "../components/fragments/PinModal";
-import { FaDoorOpen } from "react-icons/fa6";
 
 export default function TablePage() {
     const [table, setTable] = useState(null)
     const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
     const orderData = JSON.parse(localStorage.getItem('customers'))
+
 
     useEffect(() => {
         if(orderData){
