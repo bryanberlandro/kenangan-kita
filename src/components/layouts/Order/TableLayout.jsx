@@ -22,6 +22,8 @@ const TableLayout = ({setTable}) => {
         fetchData()
     }, [])
 
+    
+
     return(
         <div className="flex flex-wrap gap-8 py-4 px-6 mt-4 justify-center">
             {
@@ -29,7 +31,14 @@ const TableLayout = ({setTable}) => {
                 <p>Loading...</p>
                 :
                 data.tables.map(t => (
-                    <Table key={t._id} status={t.status} tableId={t.tableId} onClick={() => setTable(t)}/>
+                    <Table 
+                    key={t._id} 
+                    status={t.status} 
+                    currentOrder={t.currentOrder} 
+                    tableId={t.tableId} 
+                    setTable={setTable}
+                    data={t}
+                    />
                 ))
             }
         </div>

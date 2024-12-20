@@ -54,7 +54,7 @@ const OrderSidebar = ({showSidebar, currOrder, setShowSidebar}) => {
         setLoading(true)
         try {
             const response = await axios.post(
-                "http://localhost:3000/create-order",
+                "https://kenangan-kita-api.vercel.app/create-order",
                 formattedOrder
             );
             console.log("Order berhasil disimpan:", response.data);
@@ -90,8 +90,8 @@ const OrderSidebar = ({showSidebar, currOrder, setShowSidebar}) => {
                         :
                         newOrder.map(order => (
                             <OrderCard
+                            key={order._id}
                             name={order.name}
-                            key={order.id}
                             id={order._id}
                             quantity={order.quantity}
                             total={order.total}

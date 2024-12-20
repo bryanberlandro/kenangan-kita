@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 
 function PinModal({ isOpen, onClose, onSubmit }) {
@@ -6,11 +8,17 @@ function PinModal({ isOpen, onClose, onSubmit }) {
     if (!isOpen) return null;
 
     const handleSubmit = () => {
-        if (pin.length === 4) {
-            onSubmit(pin);
-            onClose();
+        if(pin.length !== 4){
+            return alert("PIN must be 4 characters long")
+        }
+        if (pin === "2222") {
+            alert("Pin benar");
+            const role = {
+                role: "admin"
+            }
+            localStorage.setItem("role", JSON.stringify(role));
         } else {
-            alert("PIN harus terdiri dari 4 digit.");
+            alert("Incorrect PIN");
         }
     };
 
@@ -26,16 +34,16 @@ function PinModal({ isOpen, onClose, onSubmit }) {
                     className="w-full p-2 border border-gray-300 rounded-md text-center text-lg tracking-widest"
                     placeholder="••••"
                 />
-                <div className="flex justify-between mt-6">
+                <div className="flex gap-2 mt-6">
                     <button
                         onClick={onClose}
-                        className="bg-gray-300 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-400"
+                        className="bg-gray-300 text-gray-700 px-4 py-2 rounded-md btn-hover w-1/2"
                     >
                         Batal
                     </button>
                     <button
                         onClick={handleSubmit}
-                        className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
+                        className="bg-blue-500 text-white px-4 py-2 rounded-md btn-hover w-1/2"
                     >
                         Konfirmasi
                     </button>
